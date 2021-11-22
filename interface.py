@@ -9,8 +9,8 @@ from gi.repository import Gtk
 class UserInterface:
         def __init__(self):
                 self.nickname = "Anonyme"
-                self.not_my_key = [0,1]
-                self.my_key = [0,1]
+                self.not_my_key = []
+                self.my_private_key = []
                 self.message = ""
                 self.entry_empty = True
                 self.nickname_step = False
@@ -49,15 +49,18 @@ class UserInterface:
                                 self.entry.set_text("")
                         elif (self.key_e_step == False):
                                 self.instruction_label.set_text("👉 Entrez la clé publique de votre interlocuteur n: 🤫")
-                                self.not_my_key[0] = int(text);
+                                self.not_my_key.append(int(text))
                                 self.key_e_step = True
                                 self.entry.set_text("")
                         elif (self.key_n_step == False):    
                                 self.instruction_label.set_text("Entrez votre message")
-                                self.not_my_key[1] = int(text);
+                                self.not_my_key.append(int(text))
                                 self.completed = True
                                 self.key_n_step = True
                                 self.entry.set_text("")
+                                # Etant donné que qu'on ne peut chiffrer que des messages sur 2048bits
+                                # On limite le nombre de charactere que peut soumettre l'utilisateur
+                                self.entry.set_max_length(256)
                         else : 
                                 print(text)
                 else :
@@ -77,7 +80,9 @@ class UserInterface:
                         return False
         
         def set_user_key(self,key):
-                self.my_key = key
+                self.my_private_key.append(key[1][0])
+                self.my_private_key.append(key[1][1])
+                
                 self.cle_publique.set_text(str(key[0]))
                 self.cle_privee.set_text(str(key[1]))   
         

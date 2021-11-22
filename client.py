@@ -9,16 +9,19 @@ gui_thread = threading.Thread(target=user.main)
 gui_thread.start()
 
 
-user.enter_text('Génération des clé en cours... ')
+user.enter_text('Génération des clé en cours... 🔑')
 key = gen_rsa_key(2048)
 
 user.set_user_key(key)
 user.enter_text('Entrez votre pseudo et la clé publique de votre interlocuteur')
+print("my key",user.my_private_key)
 
 # Choosing Nickname
 while True:
     if user.information() == True:
         break
+print("not my key",user.not_my_key)
+
 '''
     On se connecte au server
     Le client a besoin de deux thread, un qui va recevoir constamment
@@ -43,14 +46,14 @@ def receive():
             # Receive Message From Server
             # If 'NICK' Send Nickname
             message = client.recv(2048).decode('ascii')
-            first_word = message.split(' ', 1)[0]
-            
+            first_word = message.split(' ', 1)[0]            
             if message == 'NICK':
                 client.send(user.nickname.encode('ascii'))
             elif first_word == '-':
                 split_m = message.split(' ', 2)
-                if split_m[1] != user.nickname+":":
-                    dec_m = rsa_dec(int(split_m[2]),user.myKey[1])
+                if split_m[1] != user.nickname+':':
+                    
+                    dec_m = rsa_dec(int(split_m[2]),user.my_private_key)
                     user.enter_text(split_m[0] + split_m[1] + " " + str(dec_m))
                 else:
                     user.enter_text(split_m[0] + split_m[1] + " " + user.message)
