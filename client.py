@@ -1,13 +1,12 @@
 import socket
 import threading
 from dh import *
-from interface import *
+from dh_interface import *
 
-user = User()
+# On lance le thread qui va lancer l'interface graphique
+user = DH_Interface()
 gui_thread = threading.Thread(target=user.main)
 gui_thread.start()
-
-
 
 user.enter_text("Entrez votre pseudo")
 
