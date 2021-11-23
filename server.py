@@ -1,10 +1,10 @@
 import socket
 import threading
-from rsa import *
+from dh import *
 
 #Connection Data
 host = '127.0.0.1'
-port = 5555
+port = 5556
 
 # Starting Server
 '''Lorsque l'on défini un socket on doit passer deux parametre
@@ -34,6 +34,8 @@ nicknames = []
     La fonction va nous servir à diffuser les messages
     Il va envoyer le message a chaque client 
 '''
+# Generation de p et g
+p,g= gen_dh(2048)
 
 # Sending Messages to All Conected
 def broadcast(message):
@@ -80,15 +82,15 @@ def receive():
             print("Connected with {}".format(str(address)))
             
             # Request And Store Nickname
-            client.send('NICK'.encode('ascii'))
+            client.send(("NICK "+ str(p) + " " + str(g)).encode('ascii'))
             nickname = client.recv(2048).decode('ascii')
             nicknames.append(nickname)
             clients.append(client)
-            
+
                  
             # Print And Broadcast Nickname
             print("Nickname is {}".format(nickname))
-            broadcast("{} joined!".format(nickname).encode('ascii'))
+            broadcast("{} joined!\n".format(nickname).encode('ascii'))
             client.send(('Connected to server!\n').encode('ascii'))
 
             # Start Handling Thread For Client

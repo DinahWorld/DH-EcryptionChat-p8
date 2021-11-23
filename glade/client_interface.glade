@@ -62,9 +62,11 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="cle_publique">
+              <object class="GtkEntry" id="my_public_key">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
+                <property name="editable">False</property>
+                <property name="placeholder-text" translatable="yes">a générer</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -80,6 +82,18 @@
           </packing>
         </child>
         <child>
+          <object class="GtkLabel">
+            <property name="visible">True</property>
+            <property name="can-focus">False</property>
+            <property name="label" translatable="yes">La clé de votre interlocuteur</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="position">3</property>
+          </packing>
+        </child>
+        <child>
           <object class="GtkBox">
             <property name="visible">True</property>
             <property name="can-focus">False</property>
@@ -87,7 +101,7 @@
               <object class="GtkLabel">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="label" translatable="yes">Clé privée : </property>
+                <property name="label" translatable="yes">Clé publique : </property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -96,9 +110,10 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="cle_privee">
+              <object class="GtkEntry" id="public_key_entry">
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
+                <property name="placeholder-text" translatable="yes">remplissez le !</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -106,11 +121,24 @@
                 <property name="position">1</property>
               </packing>
             </child>
+            <child>
+              <object class="GtkButton" id="send_public_key">
+                <property name="label" translatable="yes">Envoi</property>
+                <property name="visible">True</property>
+                <property name="can-focus">True</property>
+                <property name="receives-default">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">True</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
           </object>
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">3</property>
+            <property name="position">4</property>
           </packing>
         </child>
         <child>
@@ -121,7 +149,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">4</property>
+            <property name="position">5</property>
           </packing>
         </child>
         <child>
@@ -133,7 +161,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">5</property>
+            <property name="position">6</property>
           </packing>
         </child>
         <child>
@@ -146,7 +174,7 @@
           <packing>
             <property name="expand">False</property>
             <property name="fill">True</property>
-            <property name="position">6</property>
+            <property name="position">7</property>
           </packing>
         </child>
       </object>
