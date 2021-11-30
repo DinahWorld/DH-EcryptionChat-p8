@@ -122,9 +122,9 @@ class DH_Interface:
         # Et que c'est le message du locuteur et non de l'utilisateur
         if split_m[1] != self.nickname + ":" and self.encryption_mode == True:
             dec_m = dh_dec(int(split_m[2]),self.private_key,self.p)
-            self.enter_text(split_m[0] + split_m[1] + " " + dec_m)
-        elif split_m[1] == self.nickname + ":":
-            self.enter_text(split_m[0] + split_m[1] + " " + self.message)            
+            self.enter_text(f"{split_m[0]}{split_m[1]} {dec_m}")
+        elif split_m[1] == (f"{self.nickname}:"):
+            self.enter_text(f"{split_m[0]}{split_m[1]} {self.message}")            
         else:
             self.enter_text(message)
 

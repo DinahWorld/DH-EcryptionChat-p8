@@ -8,6 +8,8 @@ user = DH_Interface()
 gui_thread = threading.Thread(target=user.main)
 gui_thread.start()
 
+user.enter_text("Bienvenue sur le chat DF Encryption")
+user.enter_text("Veuillez vous envoyez vos clé respective")
 user.enter_text("Entrez votre pseudo")
 
 # Tant que l'utilisateur n'aura pas fourni son pseudo
@@ -25,7 +27,7 @@ while True:
 """"""
 # Connection To Server
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-client.connect(("127.0.0.1", 5556))
+client.connect(("127.0.0.1", 5555))
 
 """
     Fonction qui va constamment recevoir les messages et les afficher sur l'écran

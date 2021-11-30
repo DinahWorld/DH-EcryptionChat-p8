@@ -4,7 +4,7 @@ from dh import *
 
 #Connection Data
 host = '127.0.0.1'
-port = 5556
+port = 5555
 
 # Starting Server
 '''Lorsque l'on défini un socket on doit passer deux parametre
